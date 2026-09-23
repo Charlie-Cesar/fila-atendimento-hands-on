@@ -1,0 +1,241 @@
+
+========================================================================
+            DESAFIO FINAL - ETAPA 1: CHEGADA DE 20 CLIENTES             
+========================================================================
+
+>> 20 clientes gerados automaticamente (prioridades sorteadas de 1 a 3):
+    1º  E001 | Rafael Moreira       | 1 - Emergência
+    2º  P002 | Carla Menezes        | 2 - Prioritário
+    3º  E003 | Ursula Pinto         | 1 - Emergência
+    4º  N004 | Beatriz Siqueira     | 3 - Normal
+    5º  E005 | Paulo Andrade        | 1 - Emergência
+    6º  N006 | Fabio Nunes          | 3 - Normal
+    7º  N007 | Quenia Martins       | 3 - Normal
+    8º  E008 | Ana Souza            | 1 - Emergência
+    9º  E009 | Lucas Ferreira       | 1 - Emergência
+   10º  E010 | Marina Duarte        | 1 - Emergência
+   11º  E011 | Sofia Cardoso        | 1 - Emergência
+   12º  N012 | Heitor Campos        | 3 - Normal
+   13º  E013 | Daniela Pires        | 1 - Emergência
+   14º  N014 | Caio Estevão         | 3 - Normal
+   15º  P015 | Xênia Ribeiro        | 2 - Prioritário
+   16º  P016 | Bruno Lima           | 2 - Prioritário
+   17º  P017 | Wesley Monteiro      | 2 - Prioritário
+   18º  N018 | Olivia Tavares       | 3 - Normal
+   19º  E019 | Diego Ramos          | 1 - Emergência
+   20º  N020 | Gabriela Rocha       | 3 - Normal
+
+>> Distribuicao por prioridade:
+   1 - Emergência   :  9 cliente(s)  ['E001', 'E003', 'E005', 'E008', 'E009', 'E010', 'E011', 'E013', 'E019']
+   2 - Prioritário  :  4 cliente(s)  ['P002', 'P015', 'P016', 'P017']
+   3 - Normal       :  7 cliente(s)  ['N004', 'N006', 'N007', 'N012', 'N014', 'N018', 'N020']
+
+========================================================================
+            ETAPA 2: ATENDIMENTO COM A FILA CLASSICA (FIFO)             
+========================================================================
+
+>> size() apos os 20 enqueue(): 20
+>> head(): E001 | Rafael Moreira       | 1 - Emergência
+
+>> Ordem de atendimento:
+
+    1o atendido -> E001 | Rafael Moreira       | 1 - Emergência
+    2o atendido -> P002 | Carla Menezes        | 2 - Prioritário
+    3o atendido -> E003 | Ursula Pinto         | 1 - Emergência
+    4o atendido -> N004 | Beatriz Siqueira     | 3 - Normal
+    5o atendido -> E005 | Paulo Andrade        | 1 - Emergência
+    6o atendido -> N006 | Fabio Nunes          | 3 - Normal
+    7o atendido -> N007 | Quenia Martins       | 3 - Normal
+    8o atendido -> E008 | Ana Souza            | 1 - Emergência
+    9o atendido -> E009 | Lucas Ferreira       | 1 - Emergência
+   10o atendido -> E010 | Marina Duarte        | 1 - Emergência
+   11o atendido -> E011 | Sofia Cardoso        | 1 - Emergência
+   12o atendido -> N012 | Heitor Campos        | 3 - Normal
+   13o atendido -> E013 | Daniela Pires        | 1 - Emergência
+   14o atendido -> N014 | Caio Estevão         | 3 - Normal
+   15o atendido -> P015 | Xênia Ribeiro        | 2 - Prioritário
+   16o atendido -> P016 | Bruno Lima           | 2 - Prioritário
+   17o atendido -> P017 | Wesley Monteiro      | 2 - Prioritário
+   18o atendido -> N018 | Olivia Tavares       | 3 - Normal
+   19o atendido -> E019 | Diego Ramos          | 1 - Emergência
+   20o atendido -> N020 | Gabriela Rocha       | 3 - Normal
+
+>> A ordem de atendimento e identica a de chegada? True
+   A prioridade foi completamente ignorada por esta estrutura.
+
+========================================================================
+        ETAPA 3: SALA DE ESPERA COM FILA CIRCULAR (CAPACIDADE 5)        
+========================================================================
+
+>> Regra da simulacao: a sala de espera comporta no maximo 5 pessoas.
+   Quando ela enche, o guiche atende (dequeue) para liberar um slot e so
+   entao o proximo cliente entra, reaproveitando a posicao liberada.
+
+   evento                     vetor interno                    indices
+   ------------------------------------------------------------------------------
+   entra E001                 [E001][----][----][----][----]   front=0  rear=0  size=1/5
+   entra P002                 [E001][P002][----][----][----]   front=0  rear=1  size=2/5
+   entra E003                 [E001][P002][E003][----][----]   front=0  rear=2  size=3/5
+   entra N004                 [E001][P002][E003][N004][----]   front=0  rear=3  size=4/5
+   entra E005                 [E001][P002][E003][N004][E005]   front=0  rear=4  size=5/5
+   FILA CHEIA (N006 aguarda)  [E001][P002][E003][N004][E005]   front=0  rear=4  size=5/5
+   atende E001 (libera slot)  [----][P002][E003][N004][E005]   front=1  rear=4  size=4/5
+   entra N006                 [N006][P002][E003][N004][E005]   front=1  rear=0  size=5/5 <- slot reutilizado
+   FILA CHEIA (N007 aguarda)  [N006][P002][E003][N004][E005]   front=1  rear=0  size=5/5
+   atende P002 (libera slot)  [N006][----][E003][N004][E005]   front=2  rear=0  size=4/5
+   entra N007                 [N006][N007][E003][N004][E005]   front=2  rear=1  size=5/5 <- slot reutilizado
+   FILA CHEIA (E008 aguarda)  [N006][N007][E003][N004][E005]   front=2  rear=1  size=5/5
+   atende E003 (libera slot)  [N006][N007][----][N004][E005]   front=3  rear=1  size=4/5
+   entra E008                 [N006][N007][E008][N004][E005]   front=3  rear=2  size=5/5 <- slot reutilizado
+   FILA CHEIA (E009 aguarda)  [N006][N007][E008][N004][E005]   front=3  rear=2  size=5/5
+   atende N004 (libera slot)  [N006][N007][E008][----][E005]   front=4  rear=2  size=4/5
+   entra E009                 [N006][N007][E008][E009][E005]   front=4  rear=3  size=5/5 <- slot reutilizado
+   FILA CHEIA (E010 aguarda)  [N006][N007][E008][E009][E005]   front=4  rear=3  size=5/5
+   atende E005 (libera slot)  [N006][N007][E008][E009][----]   front=0  rear=3  size=4/5
+   entra E010                 [N006][N007][E008][E009][E010]   front=0  rear=4  size=5/5 <- slot reutilizado
+   FILA CHEIA (E011 aguarda)  [N006][N007][E008][E009][E010]   front=0  rear=4  size=5/5
+   atende N006 (libera slot)  [----][N007][E008][E009][E010]   front=1  rear=4  size=4/5
+   entra E011                 [E011][N007][E008][E009][E010]   front=1  rear=0  size=5/5 <- slot reutilizado
+   FILA CHEIA (N012 aguarda)  [E011][N007][E008][E009][E010]   front=1  rear=0  size=5/5
+   atende N007 (libera slot)  [E011][----][E008][E009][E010]   front=2  rear=0  size=4/5
+   entra N012                 [E011][N012][E008][E009][E010]   front=2  rear=1  size=5/5 <- slot reutilizado
+   FILA CHEIA (E013 aguarda)  [E011][N012][E008][E009][E010]   front=2  rear=1  size=5/5
+   atende E008 (libera slot)  [E011][N012][----][E009][E010]   front=3  rear=1  size=4/5
+   entra E013                 [E011][N012][E013][E009][E010]   front=3  rear=2  size=5/5 <- slot reutilizado
+   FILA CHEIA (N014 aguarda)  [E011][N012][E013][E009][E010]   front=3  rear=2  size=5/5
+   atende E009 (libera slot)  [E011][N012][E013][----][E010]   front=4  rear=2  size=4/5
+   entra N014                 [E011][N012][E013][N014][E010]   front=4  rear=3  size=5/5 <- slot reutilizado
+   FILA CHEIA (P015 aguarda)  [E011][N012][E013][N014][E010]   front=4  rear=3  size=5/5
+   atende E010 (libera slot)  [E011][N012][E013][N014][----]   front=0  rear=3  size=4/5
+   entra P015                 [E011][N012][E013][N014][P015]   front=0  rear=4  size=5/5 <- slot reutilizado
+   FILA CHEIA (P016 aguarda)  [E011][N012][E013][N014][P015]   front=0  rear=4  size=5/5
+   atende E011 (libera slot)  [----][N012][E013][N014][P015]   front=1  rear=4  size=4/5
+   entra P016                 [P016][N012][E013][N014][P015]   front=1  rear=0  size=5/5 <- slot reutilizado
+   FILA CHEIA (P017 aguarda)  [P016][N012][E013][N014][P015]   front=1  rear=0  size=5/5
+   atende N012 (libera slot)  [P016][----][E013][N014][P015]   front=2  rear=0  size=4/5
+   entra P017                 [P016][P017][E013][N014][P015]   front=2  rear=1  size=5/5 <- slot reutilizado
+   FILA CHEIA (N018 aguarda)  [P016][P017][E013][N014][P015]   front=2  rear=1  size=5/5
+   atende E013 (libera slot)  [P016][P017][----][N014][P015]   front=3  rear=1  size=4/5
+   entra N018                 [P016][P017][N018][N014][P015]   front=3  rear=2  size=5/5 <- slot reutilizado
+   FILA CHEIA (E019 aguarda)  [P016][P017][N018][N014][P015]   front=3  rear=2  size=5/5
+   atende N014 (libera slot)  [P016][P017][N018][----][P015]   front=4  rear=2  size=4/5
+   entra E019                 [P016][P017][N018][E019][P015]   front=4  rear=3  size=5/5 <- slot reutilizado
+   FILA CHEIA (N020 aguarda)  [P016][P017][N018][E019][P015]   front=4  rear=3  size=5/5
+   atende P015 (libera slot)  [P016][P017][N018][E019][----]   front=0  rear=3  size=4/5
+   entra N020                 [P016][P017][N018][E019][N020]   front=0  rear=4  size=5/5 <- slot reutilizado
+
+>> Fim das chegadas. Atendendo quem ficou na sala:
+
+   atende P016                [----][P017][N018][E019][N020]   front=1  rear=4  size=4/5
+   atende P017                [----][----][N018][E019][N020]   front=2  rear=4  size=3/5
+   atende N018                [----][----][----][E019][N020]   front=3  rear=4  size=2/5
+   atende E019                [----][----][----][----][N020]   front=4  rear=4  size=1/5
+   atende N020                [----][----][----][----][----]   front=0  rear=-1  size=0/5
+
+>> Total atendido: 20 clientes
+>> Vezes em que a fila ficou cheia e bloqueou uma insercao: 15
+>> Slots reaproveitados apos remocao: [0, 1, 2, 3, 4]
+>> A ordem de saida e a mesma da fila classica? True
+
+========================================================================
+         ETAPA 4: ATENDIMENTO COM A FILA DE PRIORIDADE (heapq)          
+========================================================================
+
+>> size() apos os 20 enqueue(): 20
+>> head(): E001 | Rafael Moreira       | 1 - Emergência
+
+>> Ordem de atendimento:
+
+    1o atendido -> E001 | Rafael Moreira       | 1 - Emergência
+    2o atendido -> E003 | Ursula Pinto         | 1 - Emergência
+    3o atendido -> E005 | Paulo Andrade        | 1 - Emergência
+    4o atendido -> E008 | Ana Souza            | 1 - Emergência
+    5o atendido -> E009 | Lucas Ferreira       | 1 - Emergência
+    6o atendido -> E010 | Marina Duarte        | 1 - Emergência
+    7o atendido -> E011 | Sofia Cardoso        | 1 - Emergência
+    8o atendido -> E013 | Daniela Pires        | 1 - Emergência
+    9o atendido -> E019 | Diego Ramos          | 1 - Emergência
+   10o atendido -> P002 | Carla Menezes        | 2 - Prioritário
+   11o atendido -> P015 | Xênia Ribeiro        | 2 - Prioritário
+   12o atendido -> P016 | Bruno Lima           | 2 - Prioritário
+   13o atendido -> P017 | Wesley Monteiro      | 2 - Prioritário
+   14o atendido -> N004 | Beatriz Siqueira     | 3 - Normal
+   15o atendido -> N006 | Fabio Nunes          | 3 - Normal
+   16o atendido -> N007 | Quenia Martins       | 3 - Normal
+   17o atendido -> N012 | Heitor Campos        | 3 - Normal
+   18o atendido -> N014 | Caio Estevão         | 3 - Normal
+   19o atendido -> N018 | Olivia Tavares       | 3 - Normal
+   20o atendido -> N020 | Gabriela Rocha       | 3 - Normal
+
+>> Dentro de cada prioridade a ordem de chegada foi preservada?
+   1 - Emergência  : ['E001', 'E003', 'E005', 'E008', 'E009', 'E010', 'E011', 'E013', 'E019'] -> OK
+   2 - Prioritário : ['P002', 'P015', 'P016', 'P017'] -> OK
+   3 - Normal      : ['N004', 'N006', 'N007', 'N012', 'N014', 'N018', 'N020'] -> OK
+
+========================================================================
+                ETAPA 5: COMPARACAO DAS TRES ESTRUTURAS                 
+========================================================================
+
+>> Posicao de atendimento de cada cliente em cada estrutura
+   (ganho = quantas posicoes o cliente subiu na fila de prioridade)
+
+   senha  nome                 prio  chegada  FIFO  circular  prioridade  ganho
+   ----------------------------------------------------------------------------
+   E001   Rafael Moreira       1           1     1         1           1      0
+   P002   Carla Menezes        2           2     2         2          10     -8
+   E003   Ursula Pinto         1           3     3         3           2     +1
+   N004   Beatriz Siqueira     3           4     4         4          14    -10
+   E005   Paulo Andrade        1           5     5         5           3     +2
+   N006   Fabio Nunes          3           6     6         6          15     -9
+   N007   Quenia Martins       3           7     7         7          16     -9
+   E008   Ana Souza            1           8     8         8           4     +4
+   E009   Lucas Ferreira       1           9     9         9           5     +4
+   E010   Marina Duarte        1          10    10        10           6     +4
+   E011   Sofia Cardoso        1          11    11        11           7     +4
+   N012   Heitor Campos        3          12    12        12          17     -5
+   E013   Daniela Pires        1          13    13        13           8     +5
+   N014   Caio Estevão         3          14    14        14          18     -4
+   P015   Xênia Ribeiro        2          15    15        15          11     +4
+   P016   Bruno Lima           2          16    16        16          12     +4
+   P017   Wesley Monteiro      2          17    17        17          13     +4
+   N018   Olivia Tavares       3          18    18        18          19     -1
+   E019   Diego Ramos          1          19    19        19           9    +10
+   N020   Gabriela Rocha       3          20    20        20          20      0
+
+>> Espera media (em posicoes) por classe de prioridade
+
+   prioridade          qtd     FIFO   circular   prioridade    ganho
+   ----------------------------------------------------------------
+   1 - Emergência        9      8.8        8.8          5.0     +3.8
+   2 - Prioritário       4     12.5       12.5         11.5     +1.0
+   3 - Normal            7     11.6       11.6         17.0     -5.4
+
+   Pior caso para uma EMERGENCIA: 19o lugar na fila classica contra 9o na fila de prioridade.
+
+>> Leitura dos resultados
+
+   * Fila classica (FIFO): ordem de atendimento = ordem de chegada. E a mais
+     justa em termos de 'quem chegou antes', mas ignora a gravidade do caso.
+     Uma emergencia que chegou por ultimo so seria atendida em 19o lugar.
+
+   * Fila circular: a ORDEM de atendimento e exatamente a mesma da fila classica
+     (True). O que muda e a CAPACIDADE: com 5 posicoes a sala
+     encheu 15 vezes e cada nova entrada so foi possivel depois de um
+     atendimento. Em troca, ela usa memoria fixa e reaproveita as posicoes.
+
+   * Fila de prioridade: reordena a saida. Todas as emergencias sao atendidas
+     antes dos prioritarios, e estes antes dos normais; o empate e resolvido
+     pela ordem de chegada (contador). O preco disso e o atraso dos clientes
+     de prioridade 3, que podem sofrer inanicao (starvation) se emergencias
+     continuarem chegando.
+
+>> Resumo das primeiras 8 senhas de cada estrutura
+
+   Chegada......: ['E001', 'P002', 'E003', 'N004', 'E005', 'N006', 'N007', 'E008']
+   FIFO.........: ['E001', 'P002', 'E003', 'N004', 'E005', 'N006', 'N007', 'E008']
+   Circular.....: ['E001', 'P002', 'E003', 'N004', 'E005', 'N006', 'N007', 'E008']
+   Prioridade...: ['E001', 'E003', 'E005', 'E008', 'E009', 'E010', 'E011', 'E013']
+
+========================================================================
+                            FIM DA SIMULACAO                            
+========================================================================

@@ -1,0 +1,53 @@
+
+========================================================================
+                  PARTE 3 - FILA DE PRIORIDADE (heapq)                  
+========================================================================
+
+>> Ordem de CHEGADA dos clientes:
+    1º  N001 | Olivia Tavares       | 3 - Normal
+    2º  N002 | Caio Estevão         | 3 - Normal
+    3º  P003 | Rafael Moreira       | 2 - Prioritário
+    4º  E004 | Yasmin Correia       | 1 - Emergência
+    5º  N005 | Eduardo Chaves       | 3 - Normal
+    6º  P006 | Zeca Almeida         | 2 - Prioritário
+    7º  E007 | Quenia Martins       | 1 - Emergência
+    8º  N008 | Sofia Cardoso        | 3 - Normal
+    9º  P009 | Gabriela Rocha       | 2 - Prioritário
+   10º  E010 | Fabio Nunes          | 1 - Emergência
+
+>> Conteudo do heap na ordem fisica do vetor (prioridade, chegada, senha):
+   ['(1, 3, E004)', '(1, 9, E010)', '(1, 6, E007)', '(2, 8, P009)', '(2, 2, P003)', '(3, 0, N001)', '(2, 5, P006)', '(3, 7, N008)', '(3, 1, N002)', '(3, 4, N005)']
+   Repare que essa NAO e a ordem de atendimento: o heap so garante que a
+   raiz (indice 0) e o menor elemento.
+
+>> Estado da fila
+   size()  = 10
+   empty() = False
+   head()  = E004 | Yasmin Correia       | 1 - Emergência
+   por prioridade = {1: 3, 2: 3, 3: 4}
+
+>> Atendimento com dequeue() (menor prioridade numerica primeiro):
+
+   dequeue -> E004 | Yasmin Correia       | 1 - Emergência   (restam 9)
+   dequeue -> E007 | Quenia Martins       | 1 - Emergência   (restam 8)
+   dequeue -> E010 | Fabio Nunes          | 1 - Emergência   (restam 7)
+   dequeue -> P003 | Rafael Moreira       | 2 - Prioritário   (restam 6)
+   dequeue -> P006 | Zeca Almeida         | 2 - Prioritário   (restam 5)
+   dequeue -> P009 | Gabriela Rocha       | 2 - Prioritário   (restam 4)
+   dequeue -> N001 | Olivia Tavares       | 3 - Normal   (restam 3)
+   dequeue -> N002 | Caio Estevão         | 3 - Normal   (restam 2)
+   dequeue -> N005 | Eduardo Chaves       | 3 - Normal   (restam 1)
+   dequeue -> N008 | Sofia Cardoso        | 3 - Normal   (restam 0)
+
+>> Verificacao 1: as prioridades saem em ordem nao decrescente?
+   Prioridades na saida: [1, 1, 1, 2, 2, 2, 3, 3, 3, 3]
+   RESULTADO: OK
+
+>> Verificacao 2: dentro da mesma prioridade, vale a ordem de chegada (FIFO)?
+   Prioridade 1 (Emergência  ): ['E004', 'E007', 'E010'] -> chegadas [4, 7, 10]  OK
+   Prioridade 2 (Prioritário ): ['P003', 'P006', 'P009'] -> chegadas [3, 6, 9]  OK
+   Prioridade 3 (Normal      ): ['N001', 'N002', 'N005', 'N008'] -> chegadas [1, 2, 5, 8]  OK
+   RESULTADO: OK - fila de prioridade estavel
+
+>> Tentando atender com a fila vazia:
+   FilaPrioridadeVaziaError: Nao ha clientes aguardando atendimento.

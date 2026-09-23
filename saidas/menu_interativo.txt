@@ -1,0 +1,54 @@
+
+========================================================================
+                   SISTEMA INTELIGENTE DE ATENDIMENTO                   
+========================================================================
+
+Digite o numero da opcao desejada e pressione ENTER.
+
++----------------------------------------------------------------+
+|       SISTEMA INTELIGENTE DE ATENDIMENTO - MENU                |
++----------------------------------------------------------------+
+| 1 - Inserir cliente                                            |
+| 2 - Atender proximo (fila classica - FIFO)                     |
+| 3 - Atender proximo (fila de prioridade)                       |
+| 4 - Atender proximo (fila circular)                            |
+| 5 - Consultar proximo de cada fila (head)                      |
+| 6 - Visualizar estado atual do sistema                         |
+| 7 - Carregar clientes de exemplo                               |
+| 8 - Executar a simulacao do desafio final (20 clientes)        |
+| 0 - Sair                                                       |
++----------------------------------------------------------------+
+   Opcao: 
+========================================================================
+                      CARREGAR CLIENTES DE EXEMPLO                      
+========================================================================
+   Quantos clientes gerar? (1-20, ENTER cancela):    + E001 | Xênia Ribeiro        | 1 - Emergência
+   + P002 | Elisa Prado          | 2 - Prioritário
+   + N003 | Gabriela Rocha       | 3 - Normal
+   + E004 | Beatriz Siqueira     | 1 - Emergência
+   + E005 | Olivia Tavares       | 1 - Emergência
+   + E006 | Nathan Borges        | 1 - Emergência   (nao coube na fila circular)
+
+   Total na fila classica: 6
+   Total na sala de espera (circular): 5/5
+
++----------------------------------------------------------------+
+|       SISTEMA INTELIGENTE DE ATENDIMENTO - MENU                |
++----------------------------------------------------------------+
+| 1 - Inserir cliente                                            |
+| 2 - Atender proximo (fila classica - FIFO)                     |
+| 3 - Atender proximo (fila de prioridade)                       |
+| 4 - Atender proximo (fila circular)                            |
+| 5 - Consultar proximo de cada fila (head)                      |
+| 6 - Visualizar estado atual do sistema                         |
+| 7 - Carregar clientes de exemplo                               |
+| 8 - Executar a simulacao do desafio final (20 clientes)        |
+| 0 - Sair                                                       |
++----------------------------------------------------------------+
+   Opcao: 
+========================================================================
+                          ENCERRANDO O SISTEMA                          
+========================================================================
+
+   Clientes atendidos nesta sessao: 0
+   Ate logo!

@@ -1,0 +1,98 @@
+
+========================================================================
+                 PARTE 2 - FILA CIRCULAR (CAPACIDADE 5)                 
+========================================================================
+
+>> Fila recem-criada (vazia):
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    ----      ----      ----      ----      ----   
+
+            front=0  rear=-1  size=0/5  (VAZIA)
+
+>> Inserindo 5 clientes ate encher o vetor:
+
+   enqueue(N001) -> Heitor Campos
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    N001      ----      ----      ----      ----   
+               ^F=R
+            front=0  rear=0  size=1/5  (parcial)
+
+   enqueue(P002) -> Sofia Cardoso
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    N001      P002      ----      ----      ----   
+              ^front    ^rear
+            front=0  rear=1  size=2/5  (parcial)
+
+   enqueue(N003) -> Rafael Moreira
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    N001      P002      N003      ----      ----   
+              ^front              ^rear
+            front=0  rear=2  size=3/5  (parcial)
+
+   enqueue(N004) -> Elisa Prado
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    N001      P002      N003      N004      ----   
+              ^front                        ^rear
+            front=0  rear=3  size=4/5  (parcial)
+
+   enqueue(E005) -> Lucas Ferreira
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    N001      P002      N003      N004      E005   
+              ^front                                  ^rear
+            front=0  rear=4  size=5/5  (CHEIA)
+
+>> A fila esta CHEIA. Tentando inserir um 6o cliente:
+   FilaCheiaError: Fila circular cheia (5/5). O cliente E006 nao pode ser inserido ate que alguem seja atendido.
+
+>> Atendendo 2 clientes (dequeue) para liberar as posicoes 0 e 1:
+
+   dequeue() -> N001 | Heitor Campos        | 3 - Normal
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    ----      P002      N003      N004      E005   
+                        ^front                        ^rear
+            front=1  rear=4  size=4/5  (parcial)
+
+   dequeue() -> P002 | Sofia Cardoso        | 2 - Prioritário
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    ----      ----      N003      N004      E005   
+                                  ^front              ^rear
+            front=2  rear=4  size=3/5  (parcial)
+
+>> REUTILIZACAO DAS POSICOES: inserindo 2 novos clientes.
+   Observe rear dar a volta (4 -> 0 -> 1) e ocupar slots ja usados antes.
+
+   enqueue(E006) -> Vinicius Lopes   [rear agora e 0]
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    E006      ----      N003      N004      E005   
+              ^rear               ^front
+            front=2  rear=0  size=4/5  (parcial)
+
+   enqueue(N007) -> Tiago Barros   [rear agora e 1]
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    E006      N007      N003      N004      E005   
+                        ^rear     ^front
+            front=2  rear=1  size=5/5  (CHEIA)
+
+>> Ordem de atendimento atual (percurso circular a partir de front):
+   1o  N003 | Rafael Moreira       | 3 - Normal
+   2o  N004 | Elisa Prado          | 3 - Normal
+   3o  E005 | Lucas Ferreira       | 1 - Emergência
+   4o  E006 | Vinicius Lopes       | 1 - Emergência
+   5o  N007 | Tiago Barros         | 3 - Normal
+
+>> Esvaziando a fila por completo:
+
+   dequeue() -> N003  |  front=3  rear=1  size=4/5
+   dequeue() -> N004  |  front=4  rear=1  size=3/5
+   dequeue() -> E005  |  front=0  rear=1  size=2/5
+   dequeue() -> E006  |  front=1  rear=1  size=1/5
+   dequeue() -> N007  |  front=0  rear=-1  size=0/5
+
+>> Fila vazia novamente (indices reiniciados):
+   indice :    [0]       [1]       [2]       [3]       [4]    
+   vetor  :    ----      ----      ----      ----      ----   
+
+            front=0  rear=-1  size=0/5  (VAZIA)
+
+>> Tentando atender com a fila vazia:
+   FilaCircularVaziaError: Fila circular vazia: nao ha quem atender.

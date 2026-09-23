@@ -1,0 +1,56 @@
+
+========================================================================
+                     PARTE 1 - FILA CLÁSSICA (FIFO)                     
+========================================================================
+
+>> Cadastrando 10 clientes com enqueue():
+
+   enqueue -> P001 | Elisa Prado          | 2 - Prioritário   (size = 1)
+   enqueue -> N002 | Sofia Cardoso        | 3 - Normal   (size = 2)
+   enqueue -> P003 | Caio Estevão         | 2 - Prioritário   (size = 3)
+   enqueue -> E004 | Zeca Almeida         | 1 - Emergência   (size = 4)
+   enqueue -> E005 | Yasmin Correia       | 1 - Emergência   (size = 5)
+   enqueue -> P006 | Carla Menezes        | 2 - Prioritário   (size = 6)
+   enqueue -> E007 | Isabela Freitas      | 1 - Emergência   (size = 7)
+   enqueue -> P008 | Diego Ramos          | 2 - Prioritário   (size = 8)
+   enqueue -> P009 | Paulo Andrade        | 2 - Prioritário   (size = 9)
+   enqueue -> N010 | Olivia Tavares       | 3 - Normal   (size = 10)
+
+>> Estado da fila
+   empty() = False
+   size()  = 10
+   head()  = P001 | Elisa Prado          | 2 - Prioritário
+   último  = N010 | Olivia Tavares       | 3 - Normal
+
+>> Ordem de chegada (cadastro):
+    1º  P001 | Elisa Prado          | 2 - Prioritário
+    2º  N002 | Sofia Cardoso        | 3 - Normal
+    3º  P003 | Caio Estevão         | 2 - Prioritário
+    4º  E004 | Zeca Almeida         | 1 - Emergência
+    5º  E005 | Yasmin Correia       | 1 - Emergência
+    6º  P006 | Carla Menezes        | 2 - Prioritário
+    7º  E007 | Isabela Freitas      | 1 - Emergência
+    8º  P008 | Diego Ramos          | 2 - Prioritário
+    9º  P009 | Paulo Andrade        | 2 - Prioritário
+   10º  N010 | Olivia Tavares       | 3 - Normal
+
+>> Atendimento com dequeue() até esvaziar a fila:
+
+   dequeue -> P001 | Elisa Prado          | 2 - Prioritário   (restam 9, próximo: N002)
+   dequeue -> N002 | Sofia Cardoso        | 3 - Normal   (restam 8, próximo: P003)
+   dequeue -> P003 | Caio Estevão         | 2 - Prioritário   (restam 7, próximo: E004)
+   dequeue -> E004 | Zeca Almeida         | 1 - Emergência   (restam 6, próximo: E005)
+   dequeue -> E005 | Yasmin Correia       | 1 - Emergência   (restam 5, próximo: P006)
+   dequeue -> P006 | Carla Menezes        | 2 - Prioritário   (restam 4, próximo: E007)
+   dequeue -> E007 | Isabela Freitas      | 1 - Emergência   (restam 3, próximo: P008)
+   dequeue -> P008 | Diego Ramos          | 2 - Prioritário   (restam 2, próximo: P009)
+   dequeue -> P009 | Paulo Andrade        | 2 - Prioritário   (restam 1, próximo: N010)
+   dequeue -> N010 | Olivia Tavares       | 3 - Normal   (restam 0, próximo: ---)
+
+>> Conferência: a ordem de atendimento é igual à ordem de chegada?
+   Chegada......: ['P001', 'N002', 'P003', 'E004', 'E005', 'P006', 'E007', 'P008', 'P009', 'N010']
+   Atendimento..: ['P001', 'N002', 'P003', 'E004', 'E005', 'P006', 'E007', 'P008', 'P009', 'N010']
+   RESULTADO....: IGUAIS -> comportamento FIFO confirmado
+
+>> Tentando atender com a fila vazia:
+   FilaVaziaError: Não há clientes aguardando atendimento.

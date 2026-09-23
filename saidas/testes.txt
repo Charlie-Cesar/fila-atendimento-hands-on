@@ -1,0 +1,26 @@
+
+========================================================================
+                          TESTES AUTOMATIZADOS                          
+========================================================================
+
+   [ 1] OK      Cliente: senha e gerada com a letra da prioridade
+   [ 2] OK      Cliente: prioridade fora de 1..3 levanta ValueError
+   [ 3] OK      Fila: enqueue/dequeue respeitam a ordem de chegada (FIFO)
+   [ 4] OK      Fila: size(), empty() e head() refletem o estado atual
+   [ 5] OK      Fila: dequeue()/head() em fila vazia levantam FilaVaziaError
+   [ 6] OK      Fila: aceita apenas objetos Cliente
+   [ 7] OK      FilaCircular: enqueue faz rear avancar e dequeue faz front avancar
+   [ 8] OK      FilaCircular: inserir na fila cheia levanta FilaCheiaError sem perder dados
+   [ 9] OK      FilaCircular: posicao liberada e reutilizada (rear da a volta)
+   [10] OK      FilaCircular: dequeue em fila vazia levanta FilaCircularVaziaError
+   [11] OK      FilaCircular: ciclo completo de insercoes e remocoes mantem a ordem FIFO
+   [12] OK      FilaPrioridade: menor valor de prioridade e atendido primeiro
+   [13] OK      FilaPrioridade: empate de prioridade preserva a ordem de chegada
+   [14] OK      FilaPrioridade: head() aponta para a raiz do heap sem remover
+   [15] OK      FilaPrioridade: clientes distintos com mesma prioridade nao quebram a comparacao
+   [16] OK      FilaPrioridade: dequeue em fila vazia levanta FilaPrioridadeVaziaError
+   [17] OK      Integracao: as tres estruturas processam os mesmos 20 clientes
+
+------------------------------------------------------------------------
+   RESULTADO: 17/17 testes passaram. Tudo certo!
+------------------------------------------------------------------------
